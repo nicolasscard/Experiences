@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, View, StatusBar, Text } from 'react-native';
-import Splash from './screens/Splash';
+// import { SafeAreaView, StyleSheet, View, StatusBar, Text } from 'react-native';
+
+import AppContainer from './routes/Routes';
 
 class App extends Component {
   constructor(props, context) {
@@ -11,34 +12,29 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    // Search all operation in background, when finish quit splash
-    setTimeout(() => {
-      this.setState({ showSplash: false });
-    }, 3000);
-  }
+  // componentDidMount() {
+  //
+  // }
 
   render() {
     return (
-      <View>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <View>
-            {this.state.showSplash
-              ? <Splash />
-              : <View>
-                  <Text> Welcome to Experiences!</Text>
-                </View>
-            }
-          </View>
-        </SafeAreaView>
-      </View>
+      <AppContainer />
     );
+    // <View>
+    // <StatusBar barStyle="dark-content" />
+    // <SafeAreaView>
+    // <View>
+    // {this.state.showSplash
+    //   ? <Splash />
+    //   : <AppContainer />
+    // }
+    // </View>
+    // </SafeAreaView>
+    // </View>
   }
 }
 
-const styles = StyleSheet.create({
-
-});
+  // const styles = StyleSheet.create({
+  // });
 
 export default App;

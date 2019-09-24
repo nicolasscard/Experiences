@@ -1,44 +1,58 @@
 import React, { Component } from 'react';
 import { View, Image, Text, ActivityIndicator } from 'react-native';
+import ThemeHelper from '../helpers/theme';
 
-const IMAGESPLASH = require('../assets/images/splash.jpg');
+const Theme = ThemeHelper.getTheme();
 
 class Splash extends Component {
-  constructor(props, context) {
-    super(props, context);
+  componentDidMount() {
+    // Search all operation in background, when finish quit splash
 
-    this.state = {
-      metadata: null,
-    };
+    //Hardcode to access directly!!
+    setTimeout(() => {
+      if (true) {
+        this.props.navigation.navigate('Main');
+      } else {
+        this.props.navigation.navigate('Login');
+      }
+    }, 3000);
   }
 
   render() {
-    const { metadata } = this.state;
-
     return (
-      <View style={{ flex: 1 }}>
-        <Image
-          source={IMAGESPLASH}
-          style={{ width: 150, height: 134 }}
-        />
-        <ActivityIndicator />
-        {metadata && (
-          <Text style={styles.text}>
-            {`Versión ${metadata.appVersion} - Build ${metadata.label}`}
-          </Text>
-        )}
+      <View style={{ flex: 1, backgroundColor: 'black' }}>
+          <View style={styles.headerBackground}>
+            <View style={{ position: 'absolute', alignItems: 'center' }}>
+              <Text style={{ color: 'white', fontSize: 30 }}>
+                {'Application Experiences'}
+              </Text>
+              <Text style={{ color: 'white', marginBottom: 50 }}>
+                {'Scardilla Nicolás'}
+              </Text>
+              <ActivityIndicator color="white" size={'large'} />
+            </View>
+          </View>
+          <Image
+            source={Theme.splashImg}
+            style={styles.imageBackground}
+          />
       </View>
     );
   }
 }
 
 const styles = {
-  text: {
-    position: 'absolute',
-    bottom: 10,
-    color: '#FFF',
-    opacity: 0.2,
+  headerBackground: {
+    height: Theme.height - Theme.width,
+    backgroundColor: Theme.colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
+  imageBackground: {
+     height: Theme.width,
+     width: Theme.width,
+     backgroundColor: 'orange'
+  }
 };
 
-export default Splash;
+export { Splash };
